@@ -1,22 +1,44 @@
 .Joke {
-    margin-top: .8%;
-    margin-left: 2%;
-    text-align: center;
-    width: 80%;
-    font-size: larger;
-    border: 1px solid;
-    border-radius: 5px;
-    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid black;
+    font-weight: 500;
+    padding: 1rem;
+}
+.Joke-buttons{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 10%;
+ margin-right: 3rem;
 }
 .Joke button{
+    background: none;
     border: none;
-    position: relative;
-    right: 45%;
-    top: 1.1rem;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: rgb(58, 62, 66);
+    cursor: pointer;
 }
 .Joke-rate{
-    position: relative;
-    left: 19em;
-    top: 1.1rem;;
-    display: inline;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    border: 3px solid rgb(81, 26, 34);
+    font-size: 23px;
+    font-weight: 400;
+    text-align: center;
+}
+.Joke-text{
+    width: 80%;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.Joke-emoji{
+    font-size: 2.2rem;
+    border-radius: 50%;
+   color: rgb(242, 174, 0);
 }

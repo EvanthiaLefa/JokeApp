@@ -2,49 +2,40 @@ import React, { Component } from 'react';
 import './Joke.css'
 
 class Joke extends Component {
-
-    constructor(props) {
+    constructor(props){
         super(props);
-        this.state = { rateNum: 0 , emoji: ''}
-        this.upVote = this.upVote.bind(this)
-        this.downVote = this.downVote.bind(this)
-        this.newEmoji = this.newEmoji.bind(this)
+        this.getEmoji = this.getEmoji.bind(this)
     }
-
-    upVote() {
-        let addNum = this.state.rateNum + 1;
-        this.setState({ rateNum: addNum })
-        this.newEmoji()
-    }
-
-    downVote() {
-        if(this.state.rateNum <= 0 ){
-            this.setState({ rateNum: 0 })
-        } else {
-            let minusNum = this.state.rateNum - 1;
-            this.setState({ rateNum: minusNum })
+    //CREATE A METHOD THAT CHANGE EMOJIS DEPENDS ON THE VOTES
+    getEmoji() {
+        if (this.props.vote === 0) {
+            return  "em em-confused"
+        } else if (this.props.vote < 0) {
+            return "em em-angry"
+        } else if (this.props.vote <= 5) {
+            return "em em-neutral_face"
+        } else if (this.props.vote >= 5 && this.props.vote <= 10) {
+            return "em em-laughing"
+        } else if (this.props.vote >= 10) {
+            return "em em-rolling_on_the_floor_laughing"
         }
-        this.newEmoji()
     }
-    newEmoji(){
-    if(this.state.rateNum < 3){
-        this.setState({emoji: '🤮'})
-    }else if(this.state.rateNum > 4 && this.state.rateNum <= 7){
-        this.setState({emoji: '😐'})
-    } else if(this.state.rateNum >=8 && this.state.rateNum <= 12){
-        this.setState({emoji: '😄'})
-    }else if(this.state.rateNum >=12 ){
-        this.setState({emoji: '🤣'})
-    }
-}
 
     render() {
         return (
             <div className='Joke'>
-                <button onClick={this.upVote}>⬆</button>
-                <button onClick={this.downVote}>⬇</button>
-                <p className='Joke-rate'>{this.state.rateNum}<span>{this.state.emoji}</span></p>
-                <p>{this.props.joke}</p>
+                <div className='Joke-buttons'>
+                    <button onClick={this.props.upvote}>⬆</button>
+                    <span className='Joke-rate'>{this.props.vote}</span>
+                    <button onClick={this.props.downvote}>⬇</button>
+                </div>
+                <div className='Joke-text'>
+                    {this.props.joke}
+                </div>
+                <div className='Joke-emoji'>
+                    {/* <i className="fa-solid fa-face-meh"></i> */}
+                    <i className={this.getEmoji()} ></i>
+                </div>
             </div>
         )
     }
